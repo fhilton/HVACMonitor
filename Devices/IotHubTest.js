@@ -11,6 +11,7 @@ var Message = require('azure-iot-device').Message;
 
 console.log(__dirname);
 console.log(__filename);
+console.log(connectionString);
 
 var connectCallback = function (err) {
   if (err) {
