@@ -28,6 +28,7 @@ import time
 import math
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MAX31855.MAX31855 as MAX31855
+import sys
 
 # Define a function to convert celsius to fahrenheit.
 def c_to_f(c):
