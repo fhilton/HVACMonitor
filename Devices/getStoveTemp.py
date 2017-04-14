@@ -44,9 +44,9 @@ temp = sensor.readTempC()
 internal = sensor.readInternalC()
 
 if not math.isnan(temp):
-    print '-------------------------------------------------'
-    print 'Thermocouple Temperature: {0:0.3F}*C / {1:0.3F}*F'.format(temp, c_to_f(temp))
-    print '    Internal Temperature: {0:0.3F}*C / {1:0.3F}*F'.format(internal, c_to_f(internal))
-    print(temp)
+    # print '-------------------------------------------------'
+    # print 'Thermocouple Temperature: {0:0.3F}*C / {1:0.3F}*F'.format(temp, c_to_f(temp))
+    # print '    Internal Temperature: {0:0.3F}*C / {1:0.3F}*F'.format(internal, c_to_f(internal))
+    print(c_to_f(temp))
     sys.stdout.flush()
 
