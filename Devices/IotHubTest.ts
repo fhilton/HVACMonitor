@@ -17,36 +17,40 @@ var connectCallback = function (err) {
   } else {
     console.log('Client connected');
     
-    
-    var spawn = require("child_process").spawn;
-    var process = spawn('python',[__dirname + "/getStoveTemp.py"]);  
-        
-    process.stderr.on('data', (data) => {
-      console.log(`stderr: ${data}`);
-    });
-
-    process.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
-    });
-
     console.log(process.connected);
+    setInterval(getTempAndSend, 5000);
 
-    process.stdout.on('data', function (data){
-    // Do something with the data returned from python script
-      console.log(data.toString());
-      var msg = new Message(data.toString());
-      client.sendEvent(msg, function (err) {
-        if (err) {
-          console.log(err.toString());
-        } else {
-          console.log('Message sent');
-        };
-      });
-    });
   };
 };
 
+function getTempAndSend() {
 
+  console.log('Sending Message');  
+
+  var spawn = require("child_process").spawn;
+  var process = spawn('python',[__dirname + "/getStoveTemp.py"]);  
+      
+  process.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
+  });
+
+  process.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
+
+  process.stdout.on('data', function (data){
+  // Do something with the data returned from python script
+    console.log(data.toString());
+    var msg = new Message(data.toString());
+    client.sendEvent(msg, function (err) {
+      if (err) {
+        console.log(err.toString());
+      } else {
+        console.log('Message sent');
+      };
+    });
+  });
+}
 
 
 client.open(connectCallback);
