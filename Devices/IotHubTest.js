@@ -1,13 +1,11 @@
 var connectionString = process.env.CONNECTION_STRING_DEVICE;
+console.log(connectionString);
 // use factory function from AMQP-specific package
 var clientFromConnectionString = require('azure-iot-device-amqp').clientFromConnectionString;
 // AMQP-specific factory function returns Client object from core package
 var client = clientFromConnectionString(connectionString);
 // use Message object from core package
 var Message = require('azure-iot-device').Message;
-console.log(__dirname);
-console.log(__filename);
-console.log(connectionString);
 var connectCallback = function (err) {
     if (err) {
         console.error('Could not connect: ' + err);
