@@ -19,7 +19,7 @@ var connectCallback = function (err) {
     
     
     var spawn = require("child_process").spawn;
-    var process = spawn('python',[__dirname + "/getStoveTempMock.py"]);  
+    var process = spawn('python',[__dirname + "/getStoveTemp.py"]);  
         
     process.stderr.on('data', (data) => {
       console.log(`stderr: ${data}`);
